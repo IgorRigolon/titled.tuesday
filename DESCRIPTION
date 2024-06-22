@@ -1,12 +1,17 @@
 Package: titled.tuesday
-Title: What the Package Does (One Line, Title Case)
+Title: Load and parse Titled Tuesday data from the Chess.com API
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Igor", "Veiga", , "igor.rilave@hotmail.com", role = c("aut", "cre"))
+Description: Download all PGNs and all standings for every Titled Tuesday Tournament.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    jsonlite,
+    magrittr,
+    purrr,
+    rvest,
+    stringr
