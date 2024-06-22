@@ -17,21 +17,35 @@ titled_tuesday <- function() {
 
       message(paste("Downloading", url))
 
-      file <- jsonlite::read_json(url, simplifyVector = TRUE)
+      file <- jsonlite::read_json(url)
 
-      file$players$tournament <- url
+      # the players database has a simple single levels
 
-      file
+      players <- file$players %>%
+        data.table::rbindlist()
+
+      # the games database has some nested weirdness
+
+      games <- file$games %>%
+        purrr::map(~ unlist(.) %>% t() %>% as.data.frame()) %>%
+        data.table::rbindlist(fill = TRUE)
+
+      # returning list with two data frames
+
+      list(
+        "games" = games,
+        "players" = players
+      )
     }
   )
 
   # binding all tournaments
 
   games <- lapply(dat, function(x) x$games) %>%
-    dplyr::bind_rows()
+    data.table::rbindlist(use.names = TRUE)
 
   players <- lapply(dat, function(x) x$players) %>%
-    dplyr::bind_rows()
+    data.table::rbindlist()
 
   # return a list
 

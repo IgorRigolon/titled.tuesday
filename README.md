@@ -8,7 +8,9 @@
 
 The `titled.tuesday` R package pulls all Titled Tuesday PGNs and results
 from the [Chess.com
-API](https://www.chess.com/news/view/published-data-api)
+API](https://www.chess.com/news/view/published-data-api). If you just
+want the data, it is stored in the [`/data-raw/`
+folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw).
 
 ## Installation
 
@@ -39,6 +41,6 @@ manually, there are currently 18) of the [Chess.com TT Tournaments
 page](https://www.chess.com/tournament/live/titled-tuesdays) and get the
 tournament code for each TT, which makes up their URL.
 
-Then, the `get_download_url` function call the API to obtain the number
+Then, the `get_download_url` function calls the API to obtain the number
 of rounds in each TT, and returns a final URL, which is used as an API
 call by `titled_tuesday`.
