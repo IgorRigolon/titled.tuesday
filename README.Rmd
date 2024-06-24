@@ -18,17 +18,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `titled.tuesday` R package is an interface with the [Chess.com API](https://www.chess.com/news/view/published-data-api). It's capable of downloading and parsing data such as:
+The `titled.tuesday` R package is a database of Titled Tuesday games and an interface with the [Chess.com API](https://www.chess.com/news/view/published-data-api). It's capable of downloading and parsing data such as:
 
 * Titled Tuesday standings;
 
-* Titled Tuesday games, including the players, their ratings, and even accuracy scores;
+* Titled Tuesday games, including the players, their ratings, and the moves played;
 
-* All games ever played by titled players on chess.com;
+* All games ever played by any player on chess.com;
 
-* All games ever played by any particular player, such as yourself.
+* All titled usernames registered on chess.com.
 
-If you just want the data, it is stored in the [data-raw folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw).
+If you just want the data: raw Titled Tuesday PGNs are stored in the [data-raw folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw), and other clean data is stored in the [output folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/output).
 
 ## Installation
 

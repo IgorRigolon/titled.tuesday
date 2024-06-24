@@ -1,4 +1,4 @@
-get_games <- function(username, tt_only, years, include_pgn) {
+get_games <- function(username, years) {
 
   # get the archives for the player
 
@@ -28,18 +28,6 @@ get_games <- function(username, tt_only, years, include_pgn) {
       games <- games %>%
         purrr::map(~ unlist(.) %>% t() %>% as.data.frame()) %>%
         data.table::rbindlist(fill = TRUE)
-
-      # filtering for titled tuesday games
-
-      if (tt_only) {
-        games <- games[stringr::str_detect(games$tournament, "titled-tuesday"),]
-      }
-
-      # removing PGNs if not needed
-
-      if (!include_pgn) {
-        games$pgn <- NA
-      }
 
       # return player's games from that archive
 
