@@ -1,7 +1,5 @@
 get_games <- function(username, tt_only, years, include_pgn) {
 
-  pgn <- NULL
-
   # get the archives for the player
 
   url <- paste0("https://api.chess.com/pub/player/", username, "/games/archives")
@@ -40,7 +38,7 @@ get_games <- function(username, tt_only, years, include_pgn) {
       # removing PGNs if not needed
 
       if (!include_pgn) {
-        games <- games[, pgn:=NULL]
+        games$pgn <- NA
       }
 
       # return player's games from that archive

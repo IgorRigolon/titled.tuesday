@@ -6,11 +6,18 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `titled.tuesday` R package pulls all games played by titled players
-from the [Chess.com
-API](https://www.chess.com/news/view/published-data-api). This includes
-***Titled Tuesday standings***, all game ***PGNs***, ***Results***,
-***Ratings***, and even ***Accuracies***.
+The `titled.tuesday` R package is an interface with the [Chess.com
+API](https://www.chess.com/news/view/published-data-api). It’s capable
+of downloading and parsing data such as:
+
+- Titled Tuesday standings;
+
+- Titled Tuesday games, including the players, their ratings, and even
+  accuracy scores;
+
+- All games ever played by titled players on chess.com;
+
+- All games ever played by any particular player, such as yourself.
 
 If you just want the data, it is stored in the [data-raw
 folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw).
@@ -54,6 +61,17 @@ significantly heavier.
 
 ``` r
 dat <- tt_games(years = 2024, include_pgn = TRUE)
+```
+
+If you only want games from a few players, use the `usernames` option,
+which also speeds up the download by a lot.
+
+``` r
+dat <- tt_games(usernames = c("hikaru", "jospem"))
+
+# not limited to titled players
+
+dat <- tt_games(usernames = "your_username", tt_only = FALSE)
 ```
 
 ## How it works
