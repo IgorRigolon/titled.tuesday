@@ -2,7 +2,7 @@
 % Please edit documentation in R/tt_results.R
 \name{tt_results}
 \alias{tt_results}
-\title{Download and parse Titled Tuesday players and standings}
+\title{Download Titled Tuesday players and standings}
 \usage{
 tt_results()
 }
@@ -10,10 +10,10 @@ tt_results()
 A data frame with each username, the number of points scored, an indicator for the tournament winner, and the tournament URL
 }
 \description{
-Download and parse Titled Tuesday players and standings
+Download Titled Tuesday players and standings
 }
 \examples{
 \dontrun{
-dat <- tt_results()
+standings <- tt_results()
 }
 }

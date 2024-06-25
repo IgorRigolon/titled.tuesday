@@ -2,34 +2,22 @@
 % Please edit documentation in R/tt_games.R
 \name{tt_games}
 \alias{tt_games}
-\title{Download and parse all Titled Tuesday games, or all games played by titled players}
+\title{Download and parse all Titled Tuesday games}
 \usage{
-tt_games(tt_only = TRUE, years = "all", include_pgn = FALSE, usernames = "all")
+tt_games(years = "all")
 }
 \arguments{
-\item{tt_only}{\code{TRUE} if you want only Titled Tuesday games, \code{FALSE} if you want all games played by titled players (very heavy)}
-
 \item{years}{Vector of years from which to download games}
-
-\item{include_pgn}{If \code{TRUE}, a column with the full PGN for each game will be included. This makes the data significantly heavier}
-
-\item{usernames}{Vector of usernames from whom to download games. Defaults to "all" usernames, but makes download faster if you choose only a few}
 }
 \value{
-A data frame with one row per game from each player's perpective, including the result, players, ratings, and PGN
+A data frame with one row per game
 }
 \description{
-Download and parse all Titled Tuesday games, or all games played by titled players
+Download and parse all Titled Tuesday games
 }
 \examples{
 \dontrun{
-# to download all Titled Tuesday games since 2023, run
-dat <- tt_games(years = c(2023, 2024))
-
-# to download all games ever played by titled players on Chess.com
-dat <- tt_games(tt_only = FALSE, years = "all")
-
-# if you need the (very heavy) PGNs
-dat <- tt_games(years = 2024, include_pgn = TRUE)
+# download all TT games since 2023
+tt <- tt_games(years = c(2023, 2024))
 }
 }

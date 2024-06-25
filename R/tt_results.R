@@ -1,11 +1,11 @@
-#' Download and parse Titled Tuesday players and standings
+#' Download Titled Tuesday players and standings
 #'
 #' @return A data frame with each username, the number of points scored, an indicator for the tournament winner, and the tournament URL
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' dat <- tt_results()
+#' standings <- tt_results()
 #' }
 tt_results <- function() {
 

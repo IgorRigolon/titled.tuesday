@@ -7,9 +7,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' tt <- tt_games()
+#' # download all TT games since 2023
+#' tt <- tt_games(years = c(2023, 2024))
 #' }
 tt_games <- function(years = "all") {
+
+  # bind global variables
+
+  . <- V1 <- game_id <- NULL
 
   # list of all files to potentially download
 
