@@ -10,7 +10,7 @@ get_tournaments <- function(max_page = 20) {
 
   message("Fetching Titled Tuesday tournament URLs")
 
-  purrr::map(
+  tournaments <- purrr::map(
     seq_len(max_page),
     function(page) {
 
@@ -24,4 +24,16 @@ get_tournaments <- function(max_page = 20) {
     }
   ) %>%
     unlist()
+
+  # adding the first two which are not on the page for some reason
+
+  tournaments <- c(
+    "-monthly-32-blitz-masters-458944",
+    "-titled-tuesday-32-blitz-459813",
+    tournaments
+  )
+
+  # return
+
+  tournaments
 }
