@@ -6,21 +6,25 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `titled.tuesday` R package is an interface with the [Chess.com
+The `titled.tuesday` R package is a database of Titled Tuesday games and
+an interface with the [Chess.com
 API](https://www.chess.com/news/view/published-data-api). It’s capable
 of downloading and parsing data such as:
 
 - Titled Tuesday standings;
 
-- Titled Tuesday games, including the players, their ratings, and even
-  accuracy scores;
+- Titled Tuesday games, including the players, their ratings, and the
+  moves played;
 
-- All games ever played by titled players on chess.com;
+- All games ever played by any player on chess.com;
 
-- All games ever played by any particular player, such as yourself.
+- All titled usernames registered on chess.com.
 
-If you just want the data, it is stored in the [data-raw
-folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw).
+If you just want the data: raw Titled Tuesday PGNs are stored in the
+[data-raw
+folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/data-raw),
+and other clean data is stored in the [output
+folder](https://github.com/IgorRigolon/titled.tuesday/tree/main/output).
 
 ## Installation
 
@@ -48,30 +52,22 @@ To download all Titled Tuesday games since 2023, run
 dat <- tt_games(years = c(2023, 2024))
 ```
 
-To download all games ever played by titled players on Chess.com, simply
-use the `tt_only` option (very heavy)
+To download all games played by Hikaru on Chess.com since 2023, run
 
 ``` r
-dat <- tt_games(tt_only = FALSE, years = "all")
+dat <- player_games(years = 2023:2024, usernames = "hikaru")
 ```
 
-If you need the full PGNs with all moves from each game, use the
-`include_pgn` option. Note that this makes the final product
-significantly heavier.
+Or you can request multiple players at once
 
 ``` r
-dat <- tt_games(years = 2024, include_pgn = TRUE)
+dat <- player_games(usernames = c("vladimirkramnik", "jospem"))
 ```
 
-If you only want games from a few players, use the `usernames` option,
-which also speeds up the download by a lot.
+To download a list of all titled players on chess.com, run
 
 ``` r
-dat <- tt_games(usernames = c("hikaru", "jospem"))
-
-# not limited to titled players
-
-dat <- tt_games(usernames = "your_username", tt_only = FALSE)
+dat <- titled_players()
 ```
 
 ## How it works
@@ -88,10 +84,15 @@ Then, the `get_download_url` function calls the API to obtain the number
 of rounds in each TT, and returns a final URL, which is used as an API
 call by `tt_results`.
 
-### Games
+### Games of a particular player
 
 The Chess.com Tournaments API only sends results for the final round of
-each Titled Tuesday. To get all games, I obtain the list of all titled
-usernames with `get_titled_players`, and then ask the API for all their
-games using `get_games`. The `tt_games` function simply loops over all
-titled players and stacks up their games.
+each Titled Tuesday. The `get_games` function asks the API for all games
+of an individual player. The `player_games` function simply loops over
+usernames and stacks up their games.
+
+### Titled Tuesday
+
+I manually downloaded all PGNs from the chess.com website and saved them
+to the data-raw folder. The `tt_games` function only downloads and
+parses them.
